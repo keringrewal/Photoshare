@@ -1,0 +1,35 @@
+<!--Created by Kerin Grewal-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create an Album</title>
+</head>
+    <body>
+        <div class="title">
+                    <h1>Create a New Album</h1>
+        </div>
+            {% if message %}
+                <h3>{{ message }}!</h3>
+            {% endif %}
+        </div>
+
+        <form method = 'post' action = '/createalbum'>
+
+            <label for = "name">Album Name:</label>
+            <input type = "text" name = "name" required = 'true' /><br />
+
+            <input type="submit" value="Create" />
+        </form>
+
+        <div></div>
+        <ul>
+            <li><a href='/upload'>Upload a photo</a> </li>
+            <li><a href='/friends'>Your friends</a> </li>
+            <li><a href='/'>Home</a></li>
+            <br>
+            <li><a href='/logout'>Logout</a> </li>
+
+        </ul>
+    </body>
+</html>
