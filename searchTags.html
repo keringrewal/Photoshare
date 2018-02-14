@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tags</title>
+</head>
+
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+
+{% if photos %}
+<ul>
+    {% for photo in photos %}
+        <li><img src='data:image/png;base64, {{photo[0][0]}}' style="width:50%; height:50%"/>
+        <br>Caption: {{photo[0][2]}}
+        <br>Album: {{photo[0][3]}}
+        <br>
+
+        {% if photo[4] %}
+            Tags: {% for i in photo[4] %}
+                {{ i[0] }}
+            {% endfor %}
+        {% endif %}
+
+        <br>
+        {% if photo[1][0] %}
+            {{photo[1][0][0]}} likes
+        {% endif %}
+        <br>
+        Liked by:
+            {% for i in photo[2] %}
+                {{i[0]}} {{i[1]}},
+            {% endfor %}
+
+        <br>
+        <form method="post" action="/likePhoto">
+			<input type="text" name="pid" value="{{photo[0][1]}}" hidden="true">
+			<input type="submit" value="Like">
+		</form>
+
+        <br>
+        Comments:
+        	{% for comment in photo[3] %}
+        		<ul><li>{{comment[0]}} commented by: {{comment[1]}} {{comment[2]}}</li></ul>
+        	{% endfor %}
+        <br>
+        <form method="post" action="/commentPhoto">
+            Add Comment: <input type="text" name="comment" >
+			<input type="text" name="pid" value="{{photo[0][1]}}" hidden="true">
+	    	<input type="submit" value="Comment" />
+		</form>
+        <br>
+        <br>
+
+
+    {% endfor %}
+</ul>
+{% endif %}
+
+<ul>
+	<form method="post" action="/tags">
+		<label for="search">Search by tag (include hashtag):</label><br>
+		<input type="search" name="tag"><br>
+	    <input type="submit" value="Search" />
+	</form>
+
+    <br>
+    <br>
+<ul>
+<li><a href='/'>Home</a> </li>
+<li><a href='/profile'>Your profile</a> </li>
+<br>
+<li><a href='/logout'>Logout</a> </li>
+
+</ul>
+
+</html>

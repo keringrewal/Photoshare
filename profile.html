@@ -1,0 +1,31 @@
+<!--Created by Kerin Grewal-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Profile</title>
+    </head>
+    <body>
+
+        {% if name %}
+            <h1>Hello {{ name [0][0] }}!</h1>
+        {%  endif %}
+
+        {% if message %}
+            <h4>{{ message }}</h4>
+        {% endif %}
+
+        <ul>
+        <li><a href='/createalbum'>Create an album</a> </li>
+        <li><a href='/upload'>Upload a photo</a> </li>
+        <li><a href='/friends'>Your friends</a> </li>
+        <li><a href ='/photos'>Your photos</a></li>
+        <li><a href ='/albums'>Your albums</a></li>
+        <br>
+        <li><a href='/logout'>Logout</a> </li>
+
+        </ul>
+
+
+    </body>
+</html>

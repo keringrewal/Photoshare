@@ -1,0 +1,52 @@
+<!--Created by Kerin Grewal-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Albums</title>
+</head>
+<body>
+<h1>Your Albums!</h1>
+
+</div>
+
+{% if albums %}
+    <h2>Here are your albums:</h2>
+    <ul>
+
+        {% for album in albums %}
+            <ul>
+                     <li>{{album[0]}}</li>
+            </ul>
+
+
+
+            {% endfor %}
+
+    </ul>
+{% endif %}
+
+
+{% if message %}
+    <h3>{{ message }}!</h3>
+{% endif %}
+
+
+    <h3>Delete album?</h3>
+
+    <form method = 'post' action='/deletealbum'>
+
+            <label for = "name">Album Name:</label>
+            <input type = "text" name = "name" /><br />
+            <input type="submit" value="Delete" />
+    </form>
+
+
+<li><a href='/'>Home</a> </li>
+<li><a href='/profile'>Your profile</a> </li>
+<br>
+<li><a href='/logout'>Logout</a> </li>
+
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!--Created by Kerin Grewal-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% if message %}
+  <h3>{{message}}!</h3>
+{% endif %}
+<title>Friends</title>
+
+</head>
+
+<body>
+        {% if friendslist %}
+            <h1>Here are your friends:</h1>
+
+
+            <ul>{% for friend in friendslist %}
+                <li>{{friend[0][0]}} {{ friend[0][1] }} </li>
+            {% endfor %}
+            </ul>
+            <br>
+        {% endif %}
+
+
+
+        <form method="post" action="/friends">
+        <label for = "searchemail">Search by Email:</label>
+            <input type = "text" name = "searchemail" /><br />
+
+        <input type="submit" value="Search" />
+
+        <br>
+
+
+        <ul>
+            <li><a href='/'>Home</a> </li>
+            <li><a href='/profile'>Your profile</a> </li>
+            <br>
+            <li><a href='/logout'>Logout</a> </li>
+
+        </ul>
+
+</body>
+</html>

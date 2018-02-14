@@ -1,0 +1,64 @@
+<!--Created by Kerin Grewal-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% if message %}
+  <h3>{{message}}!</h3>
+{% endif %}
+<h1>Your Photos:</h1>
+<title>Photos</title>
+
+</head>
+
+{% if photos %}
+<ul>
+    {% for photo in photos %}
+        <li><img src='data:image/png;base64, {{photo[0][0]}}' style="width:50%; height:50%"/>
+        <br>Caption: {{photo[0][2]}}
+        <br>Album: {{photo[0][3]}}
+
+        {% if photo[4] %}
+            Tags: {% for i in photo[4] %}
+                {{ i[0] }}
+            {% endfor %}
+        {% endif %}
+
+        <br>
+        {% if photo[1][0] %}
+            {{photo[1][0][0]}} likes
+        {% endif %}
+        <br>
+        Liked by:
+            {% for i in photo[2] %}
+                {{i[0]}} {{i[1]}},
+            {% endfor %}
+
+        <br>
+        Comments:
+        	{% for comment in photo[3] %}
+        		<ul><li>{{comment[0]}} commented by: {{comment[1]}} {{comment[2]}}</li></ul>
+        	{% endfor %}
+        <br>
+
+		<form method="post" action="/deletePhoto"><br>
+		<input type="submit" name="deletePhoto" value="Delete">
+        <input type="text" name="uid" value="{{photo[0][4]}}" hidden="true">
+		<input type="text" name="pid" value="{{photo[0][1]}}"hidden="true"></li>
+        <br>
+        </form>
+
+    {% endfor %}
+
+
+
+</ul>
+{% endif %}
+<ul>
+<li><a href='/'>Home</a> </li>
+<li><a href='/profile'>Your profile</a> </li>
+<br>
+<li><a href='/logout'>Logout</a> </li>
+
+</ul>
+
+</html>
